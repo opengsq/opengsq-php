@@ -7,7 +7,7 @@ namespace OpenGSQ\Responses\Vcmp;
  *
  * Represents a player in the game.
  *
- * @package OpenGSQ\Responses\Vcmp
+ * @package Responses\Vcmp
  */
 class Player
 {

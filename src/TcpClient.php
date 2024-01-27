@@ -6,8 +6,6 @@ namespace OpenGSQ;
  * Class TcpClient
  *
  * This class provides a method to communicate with a server using TCP protocol.
- *
- * @package OpenGSQ
  */
 class TcpClient
 {

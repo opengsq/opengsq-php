@@ -13,7 +13,7 @@ use OpenGSQ\Exceptions\InvalidPacketException;
  *
  * The Vcmp class extends the ProtocolBase class and implements the Vice City Multiplayer Protocol.
  *
- * @package OpenGSQ\Protocols
+ * @package Protocols
  */
 class Vcmp extends ProtocolBase
 {

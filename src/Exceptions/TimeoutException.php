@@ -7,7 +7,7 @@ namespace OpenGSQ\Exceptions;
  *
  * This class represents a custom exception that is thrown when a timeout occurs.
  *
- * @package OpenGSQ\Exceptions
+ * @package Exceptions
  */
 class TimeoutException extends \Exception
 {

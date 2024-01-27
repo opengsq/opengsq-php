@@ -10,7 +10,7 @@ use OpenGSQ\Responses\EOS\Matchmaking;
  *
  * This class is used to interact with the Epic Online Services (EOS) platform.
  *
- * @package OpenGSQ\Protocols
+ * @package Protocols
  */
 class EOS extends ProtocolBase
 {

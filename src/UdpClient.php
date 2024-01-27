@@ -6,8 +6,6 @@ namespace OpenGSQ;
  * Class UdpClient
  *
  * This class provides a method to communicate with a server using UDP protocol.
- *
- * @package OpenGSQ
  */
 class UdpClient
 {

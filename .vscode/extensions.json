@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "devsense.composer-php-vscode",
+        "devsense.profiler-php-vscode",
+        "redhat.vscode-xml"
+    ]
+}
