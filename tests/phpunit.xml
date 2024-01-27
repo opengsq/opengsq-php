@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    bootstrap="../vendor/autoload.php"
+    colors="true"
+    stopOnFailure="false"
+    displayDetailsOnTestsThatTriggerWarnings="true">
+    <testsuites>
+        <testsuite name="Protocols">
+            <directory>Protocols</directory>
+        </testsuite>
+
+        <!-- <testsuite name="Rcon Protocols">
+            <directory>RconProtocols</directory>
+        </testsuite> -->
+    </testsuites>
+</phpunit>

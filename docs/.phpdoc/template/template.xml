@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <name>phpdoc</name>
+    <author>Jaap van Otterdijk</author>
+    <email>jaap@phpdoc.org</email>
+    <version>1.0.0</version>
+    <extends>default</extends>
+    <transformations>
+        <transformation query="copy" writer="FileIo" source="images/favicon.ico" artifact="images/favicon.ico" />
+    </transformations>
+</template>
