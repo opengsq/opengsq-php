@@ -1,6 +1,6 @@
 {
     "name": "opengsq/opengsq-php",
-    "description": "ss",
+    "description": "PHP library designed for querying game servers.",
     "type": "library",
     "license": "MIT",
     "autoload": {
