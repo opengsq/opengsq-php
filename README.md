@@ -2,25 +2,49 @@
 
 The OpenGSQ PHP library provides a convenient way to query servers from applications written in the PHP language.
 
-## Requirements
+## System Requirements
 
-- php 8.1.2+
+- [PHP 8.1.2](https://www.php.net) or higher
 
 ## Installation
 
-The recommended installation method is using composer
+The recommended way to install the OpenGSQ PHP library is through Composer, a tool for dependency management in PHP. You can install it by running the following command in your terminal:
 
 ```sh
-composer install opengsq
+composer require opengsq/opengsq-php
 ```
 
 ## Basic Usage
 
-Here’s an example of how to query a server using the Vcmp protocol:
+Here’s a quick example of how you can use the OpenGSQ library to query a server using the VCMP protocol:
 
 ```php
 <?php
 
+// Include the Composer autoloader
+require_once '../vendor/autoload.php';
 
+// Import the Vcmp class from the OpenGSQ\Protocols namespace
+use OpenGSQ\Protocols\Vcmp;
 
+// Create a new Vcmp object with the specified host and port
+$vcmp = new Vcmp('123.123.123.123', 8114);
+
+// Get the status of the server
+$status = $vcmp->getStatus();
+
+// Output the status information
+var_dump($status);
+
+// Get the players on the server
+$players = $vcmp->getPlayers();
+
+// Output the player information
+var_dump($players);
 ```
+
+In this example, we first include the Composer autoloader and import the `Vcmp` class. We then create a new `Vcmp` object, specifying the host and port of the server we want to query. Finally, we call the `getStatus` and `getPlayers` methods to retrieve and output information about the server and its players.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/opengsq/opengsq-php/blob/main/LICENSE) file for details.

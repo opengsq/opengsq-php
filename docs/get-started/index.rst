@@ -9,3 +9,4 @@ documentation.
     :maxdepth: 3
 
     install
+    usage
