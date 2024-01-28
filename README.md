@@ -2,8 +2,8 @@
 
 [![PHP Composer](https://github.com/opengsq/opengsq-php/actions/workflows/php.yml/badge.svg)](https://github.com/opengsq/opengsq-php/actions/workflows/php.yml)
 [![GitHub license](https://img.shields.io/github/license/opengsq/opengsq-php)](https://github.com/opengsq/opengsq-php/blob/main/LICENSE)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/opengsq/opengsq-php.svg)](https://packagist.org/packages/opengsq/opengsq-php)
 [![Packagist Version](https://img.shields.io/packagist/v/opengsq/opengsq-php.svg)](https://packagist.org/packages/opengsq/opengsq-php)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/opengsq/opengsq-php.svg)](https://packagist.org/packages/opengsq/opengsq-php)
 
 The OpenGSQ PHP library provides a convenient way to query servers from applications written in the PHP language.
 
