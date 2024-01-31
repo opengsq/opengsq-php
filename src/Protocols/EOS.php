@@ -212,9 +212,9 @@ class EOS extends ProtocolBase
                         'value' => $address
                     ),
                     array(
-                        'key' => 'attributes.ADDRESSBOUND_s',
-                        'op' => 'CONTAINS',
-                        'value' => $addressBoundPort
+                        'key' => ($this->deploymentId === '0a18471f93d448e2a1f60e47e03d3413' ? 'attributes.GAMESERVER_PORT_l' : 'attributes.ADDRESSBOUND_s'),
+                        'op' => ($this->deploymentId === '0a18471f93d448e2a1f60e47e03d3413' ? 'EQUAL' : 'CONTAINS'),
+                        'value' =>($this->deploymentId === '0a18471f93d448e2a1f60e47e03d3413' ? $this->port : $addressBoundPort)
                     ),
                 )
             )
