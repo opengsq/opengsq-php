@@ -5,6 +5,8 @@ namespace OpenGSQ\Protocols;
 use OpenGSQ\ProtocolBase;
 use OpenGSQ\Responses\EOS\Matchmaking;
 
+use Exception;
+
 /**
  * Class EOS
  *
@@ -41,7 +43,7 @@ class EOS extends ProtocolBase
      * @param string $deploymentId The deployment ID for the application.
      * @param string $accessToken The access token for the application.
      * @param int $timeout The timeout value for the connection, in seconds. Default is 5.
-     * @throws \Exception Thrown when either deploymentId or accessToken is null.
+     * @throws Exception Thrown when either deploymentId or accessToken is null.
      */
     public function __construct(string $host, int $port, string $deploymentId, string $accessToken, int $timeout = 5)
     {
@@ -59,7 +61,7 @@ class EOS extends ProtocolBase
      * @param string $externalAuthType The type of external authentication being used.
      * @param string $externalAuthToken The token for the external authentication.
      * @return string The access token.
-     * @throws \Exception Thrown when the access token cannot be retrieved.
+     * @throws Exception Thrown when the access token cannot be retrieved.
      */
     public static function getAccessToken(string $clientId, string $clientSecret, string $deploymentId, string $grantType, string $externalAuthType, string $externalAuthToken): string
     {
@@ -89,13 +91,13 @@ class EOS extends ProtocolBase
         $result = file_get_contents($url, false, $context);
 
         if ($result === FALSE) {
-            throw new \Exception("Failed to get access token from {$url}");
+            throw new Exception("Failed to get access token from {$url}");
         }
 
         $data = json_decode($result, true);
 
         if (!isset($data['access_token'])) {
-            throw new \Exception("Failed to get access token from {$url}");
+            throw new Exception("Failed to get access token from {$url}");
         }
 
         return $data['access_token'];
@@ -107,8 +109,8 @@ class EOS extends ProtocolBase
      * @param string $clientSecret The client secret for the application.
      * @param string $externalAuthType The type of external authentication being used.
      * @return string The access token.
-     * @throws \Exception Thrown when either clientId or clientSecret is null.
-     * @throws \Exception Thrown when the provided externalAuthType hasn't been implemented yet.
+     * @throws Exception Thrown when either clientId or clientSecret is null.
+     * @throws Exception Thrown when the provided externalAuthType hasn't been implemented yet.
      */
     public static function getExternalAuthToken(string $clientId, string $clientSecret, string $externalAuthType): string
     {
@@ -134,19 +136,19 @@ class EOS extends ProtocolBase
             $result = file_get_contents($url, false, $context);
 
             if ($result === FALSE) {
-                throw new \Exception("Failed to get access token from {$url}");
+                throw new Exception("Failed to get access token from {$url}");
             }
 
             $data = json_decode($result, true);
 
             if (!isset($data['access_token'])) {
-                throw new \Exception("Failed to get access token from {$url}");
+                throw new Exception("Failed to get access token from {$url}");
             }
 
             return $data['access_token'];
         }
 
-        throw new \Exception("The external authentication type '{$externalAuthType}' is not supported. Please provide a supported authentication type.");
+        throw new Exception("The external authentication type '{$externalAuthType}' is not supported. Please provide a supported authentication type.");
     }
 
     /**
@@ -158,7 +160,7 @@ class EOS extends ProtocolBase
      *
      * @return Matchmaking The matchmaking data.
      *
-     * @throws \Exception Thrown when the matchmaking data cannot be retrieved.
+     * @throws Exception Thrown when the matchmaking data cannot be retrieved.
      */
     public static function getMatchmaking(string $deploymentId, string $accessToken, array $filter = array("" => "")): Matchmaking
     {
@@ -175,11 +177,11 @@ class EOS extends ProtocolBase
         $result = file_get_contents($url, false, $context);
 
         if ($result === FALSE) {
-            throw new \Exception("Failed to load data from {$url}");
+            throw new Exception("Failed to load data from {$url}");
         }
 
         $responseData = json_decode($result, true);
-        $responseData ?? throw new \Exception("Failed to load data from {$url}");
+        $responseData ?? throw new Exception("Failed to load data from {$url}");
 
         $matchmaking = new Matchmaking();
         $matchmaking->sessions = $responseData['sessions'];
@@ -193,13 +195,11 @@ class EOS extends ProtocolBase
      *
      * @return array<string, mixed> An array that contains the server information.
      *
-     * @throws \Exception Thrown when the server is not found.
-     * @throws \Exception Thrown when there is a failure in getting the access token.
+     * @throws Exception Thrown when the server is not found.
      */
     public function getInfo(): array
     {
         $address = $this->getIPAddress();
-        $addressBoundPort = ":" . $this->port;
 
         $data = self::getMatchmaking(
             $this->deploymentId,
@@ -210,20 +210,22 @@ class EOS extends ProtocolBase
                         'key' => 'attributes.ADDRESS_s',
                         'op' => 'EQUAL',
                         'value' => $address
-                    ),
-                    array(
-                        'key' => 'attributes.ADDRESSBOUND_s',
-                        'op' => 'CONTAINS',
-                        'value' => $addressBoundPort
-                    ),
+                    )
                 )
             )
         );
 
-        if ($data->count <= 0) {
-            throw new \Exception("Server with address {$address} and port {$this->port} was not found.");
+        foreach ($data->sessions as $session) {
+            $attributes = $session['attributes'];
+
+            if (
+                (array_key_exists('ADDRESSBOUND_s', $attributes) && str_ends_with($attributes['ADDRESSBOUND_s'], ":{$this->port}")) ||
+                (array_key_exists('GAMESERVER_PORT_l', $attributes) && $attributes['GAMESERVER_PORT_l'] === $this->port)
+            ) {
+                return $session;
+            }
         }
 
-        return reset($data->sessions);
+        throw new Exception("Server with address {$address} and port {$this->port} was not found.");
     }
 }

@@ -6,8 +6,6 @@ namespace OpenGSQ\Responses\EOS;
  * Class Matchmaking
  *
  * Represents the response from a matchmaking request.
- *
- * @package Responses\EOS
  */
 class Matchmaking
 {

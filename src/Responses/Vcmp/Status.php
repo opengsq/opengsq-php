@@ -6,8 +6,6 @@ namespace OpenGSQ\Responses\Vcmp;
  * Class Status
  *
  * Represents the status of a game server.
- *
- * @package Responses\Vcmp
  */
 class Status
 {

@@ -6,8 +6,6 @@ namespace OpenGSQ\Exceptions;
  * Class InvalidPacketException
  *
  * Represents errors that occur during application execution when a packet is invalid.
- *
- * @package Exceptions
  */
 class InvalidPacketException extends \Exception
 {
