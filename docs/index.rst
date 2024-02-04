@@ -7,6 +7,11 @@
 
    get-started/index
 
+.. toctree::
+   :caption: Tests
+
+   tests/protocols/index
+
 Documentation
 =============
 
