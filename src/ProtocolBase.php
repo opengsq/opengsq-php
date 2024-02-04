@@ -52,4 +52,30 @@ abstract class ProtocolBase
             return gethostbyname($this->host);
         }
     }
+
+    /**
+     * Reads an unsigned 16-bit integer from the binary data string.
+     *
+     * @param string &$data The binary data string. This parameter is passed by reference, and the function will modify it by removing the read bytes.
+     * @return int The unsigned 16-bit integer read from the binary data string.
+     */
+    protected function readUInt16(string &$data): int
+    {
+        $result = unpack('v', substr($data, 0, 2));
+        $data = substr($data, 2);
+        return reset($result);
+    }
+
+    /**
+     * Reads an unsigned 32-bit integer from the binary data string.
+     *
+     * @param string &$data The binary data string. This parameter is passed by reference, and the function will modify it by removing the read bytes.
+     * @return int The unsigned 32-bit integer read from the binary data string.
+     */
+    protected function readUInt32(string &$data): int
+    {
+        $result = unpack('V', substr($data, 0, 4));
+        $data = substr($data, 4);
+        return reset($result);
+    }
 }
