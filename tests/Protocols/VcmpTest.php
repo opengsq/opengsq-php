@@ -12,6 +12,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class VcmpTest extends TestCase
 {
+    use PhpDocs;
+
     /**
      * @var Vcmp The Vcmp instance to be tested.
      */
@@ -39,6 +41,7 @@ final class VcmpTest extends TestCase
         $status = $this->vcmp->getStatus();
 
         $this->assertInstanceOf(Status::class, $status);
+        $this->updateTestResult(__FILE__, __METHOD__, $status);
     }
 
     /**
@@ -57,5 +60,7 @@ final class VcmpTest extends TestCase
         foreach ($players as $player) {
             $this->assertInstanceOf(Player::class, $player);
         }
+
+        $this->updateTestResult(__FILE__, __METHOD__, $players);
     }
 }

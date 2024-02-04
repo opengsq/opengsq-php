@@ -11,6 +11,30 @@ use PHPUnit\Framework\TestCase;
  */
 final class EOSTest extends TestCase
 {
+    use PhpDocs;
+
+    /**
+     * Test case for getting matchmaking information.
+     *
+     * This test case verifies the functionality of the getMatchmaking method of the EOS class.
+     * It asserts that the returned matchmaking object is an instance of the Matchmaking class.
+     */
+    public function testGetMatchmaking(): void
+    {
+        // Palworld
+        $clientId = 'xyza78916PZ5DF0fAahu4tnrKKyFpqRE';
+        $clientSecret = 'j0NapLEPm3R3EOrlQiM8cRLKq3Rt02ZVVwT0SkZstSg';
+        $deploymentId = '0a18471f93d448e2a1f60e47e03d3413';
+        $grantType = 'external_auth';
+        $externalAuthType = 'deviceid_access_token';
+        $externalAuthToken = EOS::getExternalAuthToken($clientId, $clientSecret, $externalAuthType);
+        $accessToken = EOS::getAccessToken($clientId, $clientSecret, $deploymentId, $grantType, $externalAuthType, $externalAuthToken);
+
+        $matchmaking = EOS::getMatchmaking($deploymentId, $accessToken);
+        $this->assertInstanceOf(Matchmaking::class, $matchmaking);
+        $this->updateTestResult(__FILE__, __METHOD__, $matchmaking);
+    }
+
     /**
      * Test case for getting server information.
      *
@@ -35,15 +59,10 @@ final class EOSTest extends TestCase
         $this->assertIsArray($info);
         $this->assertArrayHasKey('deployment', $info);
         $this->assertEquals($deploymentId, $info['deployment']);
+        $this->updateTestResult(__FILE__, __METHOD__, $info);
     }
 
-    /**
-     * Test case for getting matchmaking information.
-     *
-     * This test case verifies the functionality of the getMatchmaking method of the EOS class.
-     * It asserts that the returned matchmaking object is an instance of the Matchmaking class.
-     */
-    public function testGetMatchmaking(): void
+    public function testGetInfoPalWorld(): void
     {
         // Palworld
         $clientId = 'xyza78916PZ5DF0fAahu4tnrKKyFpqRE';
@@ -54,7 +73,12 @@ final class EOSTest extends TestCase
         $externalAuthToken = EOS::getExternalAuthToken($clientId, $clientSecret, $externalAuthType);
         $accessToken = EOS::getAccessToken($clientId, $clientSecret, $deploymentId, $grantType, $externalAuthType, $externalAuthToken);
 
-        $matchmaking = EOS::getMatchmaking($deploymentId, $accessToken);
-        $this->assertInstanceOf(Matchmaking::class, $matchmaking);
+        $eos = new EOS('34.22.135.67', 30001, $deploymentId, $accessToken, 5000);
+        $info = $eos->getInfo();
+
+        $this->assertIsArray($info);
+        $this->assertArrayHasKey('deployment', $info);
+        $this->assertEquals($deploymentId, $info['deployment']);
+        $this->updateTestResult(__FILE__, __METHOD__, $info);
     }
 }
