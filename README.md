@@ -7,6 +7,10 @@
 
 The OpenGSQ PHP library provides a convenient way to query servers from applications written in the PHP language.
 
+## Documentation
+
+Detailed documentation is available at [https://php.opengsq.com](https://php.opengsq.com).
+
 ## System Requirements
 
 - [PHP 8.1.2](https://www.php.net) or higher
