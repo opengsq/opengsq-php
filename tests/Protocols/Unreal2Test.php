@@ -25,7 +25,7 @@ final class Unreal2Test extends TestCase
      */
     protected function setUp(): void
     {
-        $this->unreal2 = new Unreal2('51.195.117.236', 9981);
+        $this->unreal2 = new Unreal2('80.4.151.145', 7778);
     }
 
     /**

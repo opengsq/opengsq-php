@@ -78,4 +78,30 @@ abstract class ProtocolBase
         $data = substr($data, 4);
         return reset($result);
     }
+
+    /**
+     * Reads a null-padded string from the binary data string.
+     *
+     * @param string &$data The binary data string. This parameter is passed by reference, and the function will modify it by removing the read bytes.
+     * @return string The null-padded string read from the binary data string.
+     */
+    protected function readNullString(string &$data): string
+    {
+        // Find the position of the first null character
+        $end = strpos($data, "\0");
+
+        if ($end === false) {
+            // If there's no null character, read the whole string
+            $result = $data;
+            $data = '';
+        } else {
+            // Read up to the null character
+            $result = substr($data, 0, $end);
+
+            // Remove the read bytes from the data string, including the null character
+            $data = substr($data, $end + 1);
+        }
+
+        return $result;
+    }
 }

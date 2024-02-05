@@ -9,24 +9,24 @@ Here are the results for the test method.
 
     {
         "ServerMode": "dedicated",
-        "AdminName": "Trebit",
-        "AdminEmail": "https:\/\/discord.link\/uliunai",
-        "ServerVersion": "1065",
-        "IsVacSecured": "true",
-        "MaxSpectators": "5",
+        "AdminName": "Server Admins",
+        "AdminEmail": "piglet@miasma.rocks",
+        "ServerVersion": "3369",
+        "GameStats": "True",
+        "MaxSpectators": "16",
         "MapVoting": "true",
-        "KickVoting": "true",
-        "SP: Version": "750",
-        "SP: Min perk level": "1",
-        "SP: Max perk level": "150",
-        "SP: Num trader weapons": "148",
-        "SP: Perk 1": "Support Specialist",
-        "SP: Perk 2": "Berserker",
-        "SP: Perk 3": "Commando",
-        "SP: Perk 4": "Field Medic",
-        "SP: Perk 5": "Firebug",
+        "KickVoting": "false",
+        "MinPlayers": "24",
+        "EndTimeDelay": "4.00",
+        "GoalScore": "5",
+        "TimeLimit": "20",
+        "Translocator": "False",
+        "WeaponStay": "True",
+        "ForceRespawn": "False",
+        "BalanceTeams": "True",
+        "PlayersBalanceTeams": "True",
+        "FriendlyFireScale": "0%",
         "mutators": [
-            "KillingFloorMut",
-            "ServerPerksMut"
+            "DMMutator"
         ]
     }
