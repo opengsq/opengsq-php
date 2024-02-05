@@ -73,7 +73,7 @@ final class EOSTest extends TestCase
         $externalAuthToken = EOS::getExternalAuthToken($clientId, $clientSecret, $externalAuthType);
         $accessToken = EOS::getAccessToken($clientId, $clientSecret, $deploymentId, $grantType, $externalAuthType, $externalAuthToken);
 
-        $eos = new EOS('34.22.135.67', 30001, $deploymentId, $accessToken, 5000);
+        $eos = new EOS('34.79.63.74', 30010, $deploymentId, $accessToken, 5000);
         $info = $eos->getInfo();
 
         $this->assertIsArray($info);
