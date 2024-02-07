@@ -57,3 +57,7 @@ In this example, we first include the Composer autoloader and import the `Vcmp` 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/opengsq/opengsq-php/blob/main/LICENSE) file for details.
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/opengsq/opengsq-php.svg?variant=adaptive)](https://starchart.cc/opengsq/opengsq-php)
